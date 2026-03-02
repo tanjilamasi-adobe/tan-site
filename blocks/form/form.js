@@ -2,20 +2,16 @@ async function createForm(formUrl, actionUrl) {
   const resp = await fetch(formUrl);
   const json = await resp.json();
   const form = document.createElement('form');
-  form.action = actionUrl;
-  form.method = 'POST';
 
   json.data.forEach((field) => {
     const wrapper = document.createElement('div');
     wrapper.className = `form-field-wrapper form-${field.Type}-wrapper`;
 
-    // Create Label
     const label = document.createElement('label');
     label.textContent = field.Label;
     label.setAttribute('for', field.Name);
     wrapper.append(label);
 
-    // Create Input
     let input;
     if (field.Type === 'textarea') {
       input = document.createElement('textarea');
@@ -41,7 +37,6 @@ async function createForm(formUrl, actionUrl) {
     form.append(wrapper);
   });
 
-  // Add Submit Button
   const buttonWrapper = document.createElement('div');
   const button = document.createElement('button');
   button.textContent = 'Submit';
@@ -49,15 +44,36 @@ async function createForm(formUrl, actionUrl) {
   buttonWrapper.append(button);
   form.append(buttonWrapper);
 
-  // Handle Submission
+  // --- SUBMISSION LOGIC ---
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const payload = new FormData(form);
+    const formData = new FormData(form);
+    const formObj = Object.fromEntries(formData.entries());
+
+    let body;
+    let headers = {};
+
+    // Check if sending to Adobe Admin API
+    if (actionUrl.includes('admin.hlx.page') || actionUrl.includes('submitted-data-sheet')) {
+      body = JSON.stringify({ data: formObj });
+      headers['Content-Type'] = 'application/json';
+    } else {
+      body = formData; // Standard FormData for httpbin
+    }
+
     const response = await fetch(actionUrl, {
       method: 'POST',
-      body: payload,
+      body: body,
+      headers: headers,
     });
-    if (response.ok) alert('Success!');
+
+    if (response.ok) {
+      alert('Success! Data submitted.');
+      form.reset();
+    } else {
+      alert('Submission failed. Check the console.');
+      console.error('Submit error:', response.status);
+    }
   });
 
   return form;

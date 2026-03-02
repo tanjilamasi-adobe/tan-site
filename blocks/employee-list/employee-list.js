@@ -1,32 +1,40 @@
 export default async function decorate(block) {
-  // 1. Get the URL from the table you created in da.live
   const link = block.querySelector('a');
   const url = link ? link.href : 'https://main--tan-site--tanjilamasi-adobe.aem.page/sheets/emp-spreadsheet.json';
 
-  // 2. Fetch the data
   const resp = await fetch(url);
-  if (!resp.ok) return;
-  
   const json = await resp.json();
   const employees = json.data;
 
-  // 3. Clear the block (the URL text disappears here)
   block.textContent = '';
 
-  // 4. Create the Grid
-  const grid = document.createElement('div');
-  grid.className = 'employee-grid';
+  // Create Table elements
+  const table = document.createElement('table');
+  table.className = 'employee-table';
 
-  // 5. Build cards
+  // Add Table Header
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  `;
+
+  const tbody = table.querySelector('tbody');
+
+  // Add rows for each employee
   employees.forEach((employee) => {
-    const card = document.createElement('div');
-    card.className = 'employee-item';
-    card.innerHTML = `
-      <div class="name">${employee.Name || 'N/A'}</div>
-      <div class="role">${employee.Role || 'Employee'}</div>
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${employee.Name || 'N/A'}</td>
+      <td>${employee.Role || 'Employee'}</td>
     `;
-    grid.append(card);
+    tbody.append(row);
   });
 
-  block.append(grid);
+  block.append(table);
 }
