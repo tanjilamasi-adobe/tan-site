@@ -1,1 +1,27 @@
 /* stylelint-disable no-empty-source */
+/* Container for the fragment while loading */
+.fragment-wrapper {
+  min-height: 100px; /* Adjust based on expected fragment size */
+  display: block;
+}
+
+/* Hide the raw link before the JS replaces it */
+.fragment.block > a {
+  display: none;
+}
+
+/* If you want a subtle fade-in effect when the fragment loads */
+.fragment {
+  opacity: 0;
+  animation: fragment-fade-in 0.4s ease forwards;
+}
+
+@keyframes fragment-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Style for when a fragment fails to load */
+.fragment[data-failed] {
+  display: none;
+}

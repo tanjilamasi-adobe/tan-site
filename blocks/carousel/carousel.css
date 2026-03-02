@@ -1,0 +1,78 @@
+.carousel-main-container {
+  width: 100%;
+  position: relative;
+}
+
+/* Image sliding area */
+.carousel .image-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.carousel .image-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel .image-list::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel .image-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.carousel .image-slide img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay Navigation */
+.carousel .carousel-nav-overlay {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  pointer-events: none;
+}
+
+.carousel .carousel-nav-overlay button {
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.carousel .carousel-nav-overlay button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Text area below images */
+.carousel .carousel-content-bottom {
+  padding: 24px 0;
+  text-align: left;
+}

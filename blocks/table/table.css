@@ -1,0 +1,97 @@
+.table.block {
+  margin: 40px auto;
+  max-width: 900px; /* Width control as requested */
+  overflow-x: auto; /* Responsive scroll */
+}
+
+.table.block table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* Header Styling */
+.table.block th {
+  background-color: #452b86;
+  color: white;
+  padding: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+/* Body Styling */
+.table.block td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+/* --- VARIANT: Striped --- */
+/* This triggers when you name it 'Table (striped)' */
+.table.striped tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Variation 2: Bordered only */
+.table.bordered table {
+    border: 1px solid #030303;
+    border-collapse: collapse; /* Ensures borders don't look double-thick */
+    width: 100%;
+}
+
+.table.bordered th,
+.table.bordered td {
+    border: 1px solid #030303;
+    padding: 10px 12px;
+}
+
+/* Ensure no striping for this variation */
+.table.bordered tbody tr {
+    background-color: transparent;
+}
+
+/* Variation 3: Combined Striped and Bordered */
+.table.striped.bordered table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+.table.striped.bordered th,
+.table.striped.bordered td {
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+}
+
+.table.striped.bordered tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Variation 5: No-Header (Headless) */
+.table.no-header th, 
+.table.no-header td {
+  background-color: transparent; /* Removes the blue */
+  color: #333;                   /* Standard text color */
+  font-weight: normal;           /* Removes bold */
+  text-transform: none;          /* Removes uppercase */
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  font-size: inherit;            /* Standard font size */
+  letter-spacing: normal;
+}
+
+/* If used with the bordered variant */
+.table.no-header.bordered td {
+  border: 1px solid #030303;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+  .table.block th, .table.block td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}

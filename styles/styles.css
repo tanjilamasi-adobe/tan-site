@@ -323,3 +323,62 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+
+/* Practice css */
+.default-content-wrapper h1, h2, h3{
+  color: rgb(0, 166, 255);
+}
+
+.default-content-wrapper h4, h5, h6{
+  color: red;
+}
+
+.practice-page{
+  background-color: yellow;
+  width: 230px;
+}
+
+.default-content-wrapper p em{
+  background-color: pink;
+}
+
+
+
+.image-container #images-demo {
+  color: brown;
+}
+
+#lists strong{
+  color: chartreuse;
+}
+
+#lists li {
+  color: blue;
+  font-size: 18px;
+}
+
+body.page-style {
+    font-family: monospace;
+}
+
+/*=================================*/
+  /*  NEWS LETTER FRAGMENT */
+/*================================*/
+/* Target the section specifically when it has this metadata style */
+.section.newsletter-box {
+  background-color: #f4f4f4; /* Light grey box */
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 40px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+/* Style the heading inside the newsletter-box fragment */
+.section.newsletter-box h2 {
+  margin-top: 0;
+  color: #333;
+}

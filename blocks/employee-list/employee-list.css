@@ -1,0 +1,66 @@
+/* Container for the whole block */
+.employee-list-wrapper {
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+/* The Grid Layout */
+.employee-list .employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+}
+
+/* Individual Card Design */
+.employee-list .employee-item {
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover Effect for Interaction */
+.employee-list .employee-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+  border-color: #eb1000; /* Adobe Red highlight */
+}
+
+/* Styling the Employee Name */
+.employee-list .name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+/* Styling the Role/Department */
+.employee-list .role {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Optional: Adobe-style button if you have a link */
+.employee-list .employee-item a {
+  margin-top: 15px;
+  display: inline-block;
+  padding: 8px 20px;
+  background-color: #eb1000;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
