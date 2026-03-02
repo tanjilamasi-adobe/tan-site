@@ -1,7 +1,10 @@
 async function createForm(formUrl, actionUrl) {
   const resp = await fetch(formUrl);
   const json = await resp.json();
+
   const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = actionUrl; // VERY IMPORTANT
 
   json.data.forEach((field) => {
     const wrapper = document.createElement('div');
@@ -13,6 +16,7 @@ async function createForm(formUrl, actionUrl) {
     wrapper.append(label);
 
     let input;
+
     if (field.Type === 'textarea') {
       input = document.createElement('textarea');
     } else if (field.Type === 'select') {
@@ -31,7 +35,10 @@ async function createForm(formUrl, actionUrl) {
     input.name = field.Name;
     input.id = field.Name;
     input.placeholder = field.Placeholder || '';
-    if (field.Required === 'yes') input.required = true;
+
+    if (field.Required === 'yes') {
+      input.required = true;
+    }
 
     wrapper.append(input);
     form.append(wrapper);
@@ -39,50 +46,19 @@ async function createForm(formUrl, actionUrl) {
 
   const buttonWrapper = document.createElement('div');
   const button = document.createElement('button');
-  button.textContent = 'Submit';
   button.type = 'submit';
+  button.textContent = 'Submit';
   buttonWrapper.append(button);
   form.append(buttonWrapper);
-
-  // --- SUBMISSION LOGIC ---
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const formObj = Object.fromEntries(formData.entries());
-
-    let body;
-    let headers = {};
-
-    // Check if sending to Adobe Admin API
-    if (actionUrl.includes('admin.hlx.page') || actionUrl.includes('submitted-data-sheet')) {
-      body = JSON.stringify({ data: formObj });
-      headers['Content-Type'] = 'application/json';
-    } else {
-      body = formData; // Standard FormData for httpbin
-    }
-
-    const response = await fetch(actionUrl, {
-      method: 'POST',
-      body: body,
-      headers: headers,
-    });
-
-    if (response.ok) {
-      alert('Success! Data submitted.');
-      form.reset();
-    } else {
-      alert('Submission failed. Check the console.');
-      console.error('Submit error:', response.status);
-    }
-  });
 
   return form;
 }
 
 export default async function decorate(block) {
   const links = [...block.querySelectorAll('a')];
-  const formUrl = links[0]?.href;
-  const actionUrl = links[1]?.href;
+
+  const formUrl = links[0]?.href;      // structure sheet JSON
+  const actionUrl = links[1]?.href;    // /sheets/employee-form
 
   if (formUrl && actionUrl) {
     const form = await createForm(formUrl, actionUrl);
