@@ -67,6 +67,7 @@
 }
 
 /* --- VARIANT: Striped --- */
+
 /* This triggers when you name it 'Table (striped)' */
 .table.striped tbody tr:nth-child(even) {
   background-color: #f2f2f2;

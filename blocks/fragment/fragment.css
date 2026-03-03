@@ -1,4 +1,5 @@
 /* stylelint-disable no-empty-source */
+
 /* Container for the fragment while loading */
 .fragment-wrapper {
   min-height: 100px; /* Adjust based on expected fragment size */
@@ -17,8 +18,14 @@
 }
 
 @keyframes fragment-fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Style for when a fragment fails to load */
