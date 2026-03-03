@@ -2,7 +2,7 @@
   border-bottom: 1px solid #514d4d;
 }
 
-/* Header - Moved up to resolve specificity order */
+/* Header */
 .accordion > div > div:first-child {
   cursor: pointer;
   padding: 16px 50px 16px 16px;
@@ -21,7 +21,7 @@
   transition: max-height 0.3s ease, padding 0.3s ease;
 }
 
-/* Hover */
+/* Hover - Keep this before active states */
 .accordion > div > div:first-child:hover {
   background-color: #e9dfdf;
 }
@@ -41,13 +41,13 @@
   background-size: contain;
 }
 
-/* Active State Content */
+/* Active State Content - Moved to the end */
 .accordion .active > div:last-child {
   max-height: 500px;
   padding: 16px;
 }
 
-/* Active State Arrow */
+/* Active State Arrow - Moved to the end */
 .accordion .active > div:first-child::after {
   transform: translateY(-50%) rotate(180deg);
 }
