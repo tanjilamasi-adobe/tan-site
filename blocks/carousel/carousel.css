@@ -53,7 +53,7 @@
 
 .carousel .carousel-nav-overlay button {
   pointer-events: auto;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(0 0 0 / 50%);
   color: white;
   border: none;
   width: 45px;
@@ -68,7 +68,7 @@
 }
 
 .carousel .carousel-nav-overlay button:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgb(0 0 0 / 80%);
 }
 
 /* Text area below images */

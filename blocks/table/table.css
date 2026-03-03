@@ -30,28 +30,46 @@
   color: #333;
 }
 
-/* --- VARIANT: Striped --- */
-/* This triggers when you name it 'Table (striped)' */
-.table.striped tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-/* Variation 2: Bordered only */
+/* Variation 2: Bordered only - Moved up to solve descending specificity */
 .table.bordered table {
-    border: 1px solid #030303;
-    border-collapse: collapse; /* Ensures borders don't look double-thick */
-    width: 100%;
+  border: 1px solid #030303;
+  border-collapse: collapse; /* Ensures borders don't look double-thick */
+  width: 100%;
 }
 
 .table.bordered th,
 .table.bordered td {
-    border: 1px solid #030303;
-    padding: 10px 12px;
+  border: 1px solid #030303;
+  padding: 10px 12px;
 }
 
 /* Ensure no striping for this variation */
 .table.bordered tbody tr {
-    background-color: transparent;
+  background-color: transparent;
+}
+
+/* Variation 5: No-Header (Headless) - Moved up to solve descending specificity */
+.table.no-header th,
+.table.no-header td {
+  background-color: transparent; /* Removes the blue */
+  color: #333;                   /* Standard text color */
+  font-weight: normal;           /* Removes bold */
+  text-transform: none;          /* Removes uppercase */
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  font-size: inherit;            /* Standard font size */
+  letter-spacing: normal;
+}
+
+/* If used with the bordered variant */
+.table.no-header.bordered td {
+  border: 1px solid #030303;
+}
+
+/* --- VARIANT: Striped --- */
+/* This triggers when you name it 'Table (striped)' */
+.table.striped tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
 /* Variation 3: Combined Striped and Bordered */
@@ -70,27 +88,10 @@
   background-color: #f2f2f2;
 }
 
-/* Variation 5: No-Header (Headless) */
-.table.no-header th, 
-.table.no-header td {
-  background-color: transparent; /* Removes the blue */
-  color: #333;                   /* Standard text color */
-  font-weight: normal;           /* Removes bold */
-  text-transform: none;          /* Removes uppercase */
-  padding: 12px 15px;
-  border-bottom: 1px solid #eee;
-  font-size: inherit;            /* Standard font size */
-  letter-spacing: normal;
-}
-
-/* If used with the bordered variant */
-.table.no-header.bordered td {
-  border: 1px solid #030303;
-}
-
 /* Mobile Adjustments */
-@media (max-width: 600px) {
-  .table.block th, .table.block td {
+@media (width <= 600px) {
+  .table.block th,
+  .table.block td {
     padding: 10px;
     font-size: 0.9rem;
   }

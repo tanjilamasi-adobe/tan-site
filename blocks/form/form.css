@@ -12,6 +12,7 @@
   flex-direction: column;
 }
 
+/* Header - Fixed: Added empty line before comment */
 .form-field-wrapper label {
   font-weight: bold;
   margin-bottom: 0.5rem;
