@@ -27,15 +27,6 @@
   padding: 16px;
 }
 
-.accordion .active > div:first-child::after {
-  transform: translateY(-50%) rotate(180deg);
-}
-
-/* Hover */
-.accordion > div > div:first-child:hover {
-  background-color: #e9dfdf;
-}
-
 /* SVG Arrow */
 .accordion > div > div:first-child::after {
   content: "";
@@ -50,3 +41,13 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.accordion .active > div:first-child::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Hover */
+.accordion > div > div:first-child:hover {
+  background-color: #e9dfdf;
+}
+
