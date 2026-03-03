@@ -41,11 +41,9 @@ export default function decorate(block) {
     <button class="next" aria-label="Next">❯</button>
   `;
 
-  nav.querySelector('.prev').onclick = () =>
-    imageList.scrollBy({ left: -imageList.offsetWidth, behavior: 'smooth' });
+  nav.querySelector('.prev').onclick = () => imageList.scrollBy({ left: -imageList.offsetWidth, behavior: 'smooth' });
 
-  nav.querySelector('.next').onclick = () =>
-    imageList.scrollBy({ left: imageList.offsetWidth, behavior: 'smooth' });
+  nav.querySelector('.next').onclick = () => imageList.scrollBy({ left: imageList.offsetWidth, behavior: 'smooth' });
 
   imageViewport.append(imageList, nav);
 

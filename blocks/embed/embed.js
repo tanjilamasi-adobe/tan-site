@@ -1,5 +1,5 @@
 export default function decorate(block) {
-  const link = block.querySelector('a');
+  const [link] = block.querySelectorAll('a');
   const [img] = block.querySelectorAll('img');
 
   if (!link) return;
