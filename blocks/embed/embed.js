@@ -8,7 +8,7 @@ export default function decorate(block) {
   let videoId = '';
 
   if (url.hostname.includes('youtube.com')) videoId = url.searchParams.get('v');
-  if (url.hostname.includes('youtu.be')) videoId = url.pathname.split('/')[1];
+  if (url.hostname.includes('youtu.be')) [, videoId] = url.pathname.split('/');
 
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
 
