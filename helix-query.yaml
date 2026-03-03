@@ -6,4 +6,4 @@ indices:
         select: head > title
       description:
         select: head > meta[name="description"]
-        value: attribute(content)
+        value: attribute(content) 
