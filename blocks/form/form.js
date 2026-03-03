@@ -57,8 +57,8 @@ async function createForm(formUrl, actionUrl) {
 export default async function decorate(block) {
   const links = [...block.querySelectorAll('a')];
 
-  const formUrl = links[0]?.href;      // structure sheet JSON
-  const actionUrl = links[1]?.href;    // /sheets/employee-form
+  const formUrl = links[0]?.href;
+  const actionUrl = links[1]?.href;
 
   if (formUrl && actionUrl) {
     const form = await createForm(formUrl, actionUrl);

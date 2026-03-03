@@ -14,7 +14,6 @@ export default function decorate(block) {
   // Build the Card UI
   const cardDiv = document.createElement('div');
   cardDiv.className = 'employee-card-inner';
-  
   cardDiv.innerHTML = `
     <div class="card-image">${image.innerHTML}</div>
     <div class="card-body">

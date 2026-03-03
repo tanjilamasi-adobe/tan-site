@@ -14,7 +14,6 @@ export default async function decorate(block) {
 
   // Fetch the data from the URL you provided
   const DATA_URL = 'https://main--helix-block-collection--adobe.hlx.live/docs/library/blocks/sample-search-data/query-index.json';
-  
   let searchData = [];
   try {
     const resp = await fetch(DATA_URL);
@@ -56,8 +55,6 @@ export default async function decorate(block) {
   };
 
   button.addEventListener('click', performSearch);
-  
-  // Also search when pressing "Enter"
   input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') performSearch();
   });

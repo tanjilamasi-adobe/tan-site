@@ -1,9 +1,0 @@
-indices:
-  posts:
-    target: /query-index.json
-    properties:
-      title:
-        select: head > title
-      description:
-        select: head > meta[name="description"]
-        value: attribute(content) 

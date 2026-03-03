@@ -7,7 +7,6 @@ export default function decorate(block) {
 
   rows.forEach((row, i) => {
     const tr = document.createElement('tr');
-    
     // Map the columns from the EDS divs to table cells
     [...row.children].forEach((col) => {
       const cell = document.createElement(i === 0 ? 'th' : 'td');
