@@ -51,6 +51,28 @@ async function createForm(formUrl, actionUrl) {
   buttonWrapper.append(button);
   form.append(buttonWrapper);
 
+  // ✅ Add submission handler
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const obj = {};
+    formData.forEach((value, key) => { obj[key] = value; });
+
+    // POST JSON to the ingestion endpoint
+    const resp = await fetch(actionUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(obj),
+    });
+
+    if (resp.ok) {
+      alert('Form submitted successfully!');
+      form.reset();
+    } else {
+      alert('Error submitting form');
+    }
+  });
+
   return form;
 }
 
