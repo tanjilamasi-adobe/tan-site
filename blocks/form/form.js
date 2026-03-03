@@ -1,10 +1,10 @@
 async function createForm(formUrl, actionUrl) {
-  const resp = await fetch(formUrl);
-  const json = await resp.json();
+  const response = await fetch(formUrl);
+  const json = await response.json();
 
   const form = document.createElement('form');
   form.method = 'POST';
-  form.action = actionUrl; // VERY IMPORTANT
+  form.action = actionUrl;
 
   json.data.forEach((field) => {
     const wrapper = document.createElement('div');
@@ -51,25 +51,38 @@ async function createForm(formUrl, actionUrl) {
   buttonWrapper.append(button);
   form.append(buttonWrapper);
 
-  // ✅ Add submission handler
+  // ✅ Add submission handler without shadowing
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
     const obj = {};
     formData.forEach((value, key) => { obj[key] = value; });
 
-    // POST JSON to the ingestion endpoint
-    const resp = await fetch(actionUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(obj),
-    });
+    try {
+      const submitResponse = await fetch(actionUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(obj),
+      });
 
-    if (resp.ok) {
-      alert('Form submitted successfully!');
-      form.reset();
-    } else {
-      alert('Error submitting form');
+      if (submitResponse.ok) {
+        // Replace alert with DOM feedback
+        const msg = document.createElement('p');
+        msg.className = 'form-success';
+        msg.textContent = 'Form submitted successfully!';
+        form.append(msg);
+        form.reset();
+      } else {
+        const msg = document.createElement('p');
+        msg.className = 'form-error';
+        msg.textContent = 'Error submitting form.';
+        form.append(msg);
+      }
+    } catch (err) {
+      const msg = document.createElement('p');
+      msg.className = 'form-error';
+      msg.textContent = 'Network error.';
+      form.append(msg);
     }
   });
 
