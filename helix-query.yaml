@@ -1,0 +1,8 @@
+indices:
+  employees:
+    source: /sheets/
+    target: /sheets/query-index.json
+    properties:
+      name: [Name]
+      role: [Role]
+      empId: [ID]

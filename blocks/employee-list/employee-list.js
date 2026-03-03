@@ -29,9 +29,13 @@ export default async function decorate(block) {
   // Add rows for each employee
   employees.forEach((employee) => {
     const row = document.createElement('tr');
+    // Using || to support both Raw JSON (Name) and Indexed JSON (name)
+    const name = employee.Name || employee.name || 'N/A';
+    const role = employee.Role || employee.role || 'Employee';
+
     row.innerHTML = `
-      <td>${employee.Name || 'N/A'}</td>
-      <td>${employee.Role || 'Employee'}</td>
+      <td>${name}</td>
+      <td>${role}</td>
     `;
     tbody.append(row);
   });
