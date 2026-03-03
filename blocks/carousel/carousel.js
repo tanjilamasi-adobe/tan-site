@@ -43,7 +43,7 @@ export default function decorate(block) {
   // 3. Create the Text Area (Content below images)
   const contentDiv = document.createElement('div');
   contentDiv.classList.add('carousel-content-bottom');
-  textContent.forEach(nodes => contentDiv.append(nodes.cloneNode(true)));
+  textContent.forEach((nodes) => contentDiv.append(nodes.cloneNode(true)));
 
   carouselWrapper.append(imageViewport, contentDiv);
   block.append(carouselWrapper);
