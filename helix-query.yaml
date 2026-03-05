@@ -1,8 +1,13 @@
+version: 1
 indices:
-  employees:
-    source: /sheets/
-    target: /sheets/query-index.json
+  default:
+    include:
+      - '/**'
+    target: /query-index
     properties:
-      name: [Name]
-      role: [Role]
-      empId: [ID]
+      path:
+        select: head > meta[property="og:url"]
+      title:
+        select: head > title
+      description:
+        select: head > meta[name="description"]
